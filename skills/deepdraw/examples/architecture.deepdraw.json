@@ -1,0 +1,123 @@
+{
+  "version": 1,
+  "title": "Order service",
+  "rootId": "root",
+  "allowEdit": true,
+  "nodes": {
+    "root": {
+      "type": "root",
+      "markdown": "# Order service\n\nOne request, from the browser to the card charge.\n\n**Solid boxes open into their own drawing** — click one twice to go in. **Dashed boxes group shapes on this level**; they hold nothing inside them.\n\nColour is the team that owns the box: violet edge, blue web, green API, amber async, slate data."
+    },
+
+    "caption": {
+      "type": "text", "x": 20, "y": 24, "w": 1000, "h": 28,
+      "text": "Solid boxes open into their own drawing. Dashed boxes only group what is already here.",
+      "style": { "textColor": "#64748b", "fontSize": 15 }
+    },
+
+    "visitor": {
+      "type": "icon", "x": 24, "y": 178, "w": 64, "h": 64,
+      "text": "Visitor",
+      "href": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#334155\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"12\" cy=\"8\" r=\"4\"/><path d=\"M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8\"/></svg>"
+    },
+
+    "zone-edge": {
+      "type": "container", "x": 120, "y": 80, "w": 460, "h": 240,
+      "text": "Public edge",
+      "style": { "stroke": "#94a3b8", "fontSize": 16 }
+    },
+    "zone-core": {
+      "type": "container", "x": 640, "y": 80, "w": 500, "h": 240,
+      "text": "Core",
+      "style": { "stroke": "#94a3b8", "fontSize": 16 }
+    },
+
+    "cdn": {
+      "type": "ellipse", "x": 150, "y": 150, "w": 170, "h": 110,
+      "text": "CDN",
+      "markdown": "Static assets and the marketing pages, cached at the edge for a year. A deploy busts it with a new build hash — nothing here is ever purged by hand.",
+      "style": { "fill": "#f5f3ff", "stroke": "#7c3aed" }
+    },
+    "web": {
+      "type": "rect", "x": 360, "y": 150, "w": 180, "h": 110,
+      "text": "Web app\nNext.js",
+      "markdown": "Server components by default. The only client state is the cart, and it is the only thing that survives a reload.",
+      "style": { "fill": "#eff6ff", "stroke": "#2563eb" }
+    },
+    "api": {
+      "type": "rect", "x": 670, "y": 150, "w": 190, "h": 110,
+      "text": "Order API\n.NET 9",
+      "markdown": "Every write is one transaction: the order row and its outbox row are committed together or not at all. See the drawing inside.",
+      "style": { "fill": "#ecfdf5", "stroke": "#059669" }
+    },
+    "db": {
+      "type": "rect", "x": 920, "y": 150, "w": 190, "h": 110,
+      "text": "Postgres\norders + outbox",
+      "style": { "fill": "#f8fafc", "stroke": "#475569" }
+    },
+    "worker": {
+      "type": "rect", "x": 670, "y": 410, "w": 190, "h": 110,
+      "text": "Payment worker",
+      "markdown": "Drains the outbox. At-least-once, so @[charge card] has to be idempotent.",
+      "style": { "fill": "#fef3c7", "stroke": "#d97706" }
+    },
+
+    "a1": { "type": "arrow", "from": { "nodeId": "visitor", "side": "right" }, "to": { "nodeId": "cdn", "side": "left" } },
+    "a2": { "type": "arrow", "from": { "nodeId": "cdn", "side": "right" }, "to": { "nodeId": "web", "side": "left" } },
+    "a3": { "type": "arrow", "from": { "nodeId": "web", "side": "right" }, "to": { "nodeId": "api", "side": "left" }, "text": "fetch" },
+    "a4": { "type": "arrow", "from": { "nodeId": "api", "side": "right" }, "to": { "nodeId": "db", "side": "left" } },
+    "a5": {
+      "type": "arrow",
+      "from": { "nodeId": "db", "side": "bottom" }, "to": { "nodeId": "worker", "side": "right" },
+      "text": "outbox drain",
+      "style": { "stroke": "#d97706", "strokeStyle": "dashed" }
+    },
+
+    "legend": {
+      "type": "text", "x": 120, "y": 420, "w": 460, "h": 60,
+      "text": "Four boxes here open into a drawing of their own.\nThe two dashed rectangles group; they do not nest.",
+      "style": { "textColor": "#64748b", "fontSize": 15 }
+    },
+
+    "w-shell":  { "parentId": "web", "type": "rect", "x": 40, "y": 60, "w": 220, "h": 110, "text": "App shell\nlayout.tsx", "style": { "fill": "#eff6ff", "stroke": "#2563eb" } },
+    "w-list":   { "parentId": "web", "type": "rect", "x": 300, "y": 60, "w": 220, "h": 110, "text": "Order list\nserver component", "style": { "fill": "#ffffff" } },
+    "w-detail": { "parentId": "web", "type": "rect", "x": 560, "y": 60, "w": 220, "h": 110, "text": "Order detail", "style": { "fill": "#ffffff" } },
+    "w-cart":   { "parentId": "web", "type": "rect", "x": 300, "y": 250, "w": 220, "h": 110, "text": "Cart\nclient state", "style": { "fill": "#fef3c7", "stroke": "#d97706" }, "markdown": "The one island of client state. Kept in localStorage so a reload does not empty it." },
+    "w-a1": { "parentId": "web", "type": "arrow", "from": { "nodeId": "w-shell", "side": "right" }, "to": { "nodeId": "w-list", "side": "left" } },
+    "w-a2": { "parentId": "web", "type": "arrow", "from": { "nodeId": "w-list", "side": "right" }, "to": { "nodeId": "w-detail", "side": "left" } },
+    "w-a3": { "parentId": "web", "type": "arrow", "from": { "nodeId": "w-list", "side": "bottom" }, "to": { "nodeId": "w-cart", "side": "top" }, "text": "add" },
+    "w-note": { "parentId": "web", "type": "text", "x": 40, "y": 390, "w": 740, "h": 28, "text": "Server components everywhere except the cart.", "style": { "textColor": "#64748b", "fontSize": 15 } },
+
+    "a-in":    { "parentId": "api", "type": "rect", "x": 40, "y": 70, "w": 200, "h": 100, "text": "POST /orders", "style": { "fill": "#ffffff" } },
+    "a-check": { "parentId": "api", "type": "diamond", "x": 300, "y": 60, "w": 190, "h": 120, "text": "Stock\navailable?", "style": { "fill": "#fef3c7", "stroke": "#d97706" } },
+    "a-ok":    { "parentId": "api", "type": "rect", "x": 560, "y": 40, "w": 200, "h": 100, "text": "201 Created", "style": { "fill": "#ecfdf5", "stroke": "#059669" } },
+    "a-no":    { "parentId": "api", "type": "rect", "x": 560, "y": 190, "w": 200, "h": 100, "text": "409 Conflict", "style": { "fill": "#fef2f2", "stroke": "#dc2626" } },
+    "a-b1": { "parentId": "api", "type": "arrow", "from": { "nodeId": "a-in", "side": "right" }, "to": { "nodeId": "a-check", "side": "left" } },
+    "a-b2": { "parentId": "api", "type": "arrow", "from": { "nodeId": "a-check" }, "to": { "nodeId": "a-ok" }, "text": "yes", "style": { "stroke": "#059669" } },
+    "a-b3": { "parentId": "api", "type": "arrow", "from": { "nodeId": "a-check" }, "to": { "nodeId": "a-no" }, "text": "no", "style": { "stroke": "#dc2626" } },
+    "a-row":   { "parentId": "api", "type": "rect", "x": 40, "y": 360, "w": 200, "h": 100, "text": "orders row", "style": { "fill": "#f8fafc" } },
+    "a-fat":   { "parentId": "api", "type": "fatArrow", "x": 270, "y": 375, "w": 150, "h": 70, "text": "same tx" },
+    "a-out":   { "parentId": "api", "type": "rect", "x": 450, "y": 360, "w": 220, "h": 100, "text": "outbox row\npayment.requested", "style": { "fill": "#fef3c7", "stroke": "#d97706" } },
+    "a-todo":  { "parentId": "api", "type": "sticky", "x": 800, "y": 360, "w": 190, "h": 130, "rotation": 2, "text": "TODO\nidempotency key\non retry" },
+
+    "d-tables": { "parentId": "db", "type": "container", "x": 40, "y": 50, "w": 500, "h": 230, "text": "Written by the API", "style": { "stroke": "#94a3b8" } },
+    "d-orders": { "parentId": "db", "type": "rect", "x": 70, "y": 110, "w": 200, "h": 100, "text": "orders", "style": { "fill": "#ffffff" } },
+    "d-items":  { "parentId": "db", "type": "rect", "x": 310, "y": 110, "w": 200, "h": 100, "text": "order_items", "style": { "fill": "#ffffff" } },
+    "d-outbox": { "parentId": "db", "type": "rect", "x": 70, "y": 330, "w": 200, "h": 100, "text": "outbox", "style": { "fill": "#fef3c7", "stroke": "#d97706" } },
+    "d-a1": { "parentId": "db", "type": "arrow", "from": { "nodeId": "d-orders", "side": "right" }, "to": { "nodeId": "d-items", "side": "left" }, "text": "1..n" },
+    "d-a2": { "parentId": "db", "type": "arrow", "from": { "nodeId": "d-orders", "side": "bottom" }, "to": { "nodeId": "d-outbox", "side": "top" } },
+    "d-note": { "parentId": "db", "type": "text", "x": 310, "y": 340, "w": 260, "h": 80, "text": "Only the worker reads the outbox,\nand only it deletes from it.", "style": { "textColor": "#64748b", "fontSize": 15 } },
+
+    "k-poll":   { "parentId": "worker", "type": "rect", "x": 40, "y": 80, "w": 200, "h": 100, "text": "poll outbox", "style": { "fill": "#ffffff" } },
+    "k-charge": { "parentId": "worker", "type": "rect", "x": 300, "y": 80, "w": 200, "h": 100, "text": "charge card", "style": { "fill": "#fef3c7", "stroke": "#d97706" } },
+    "k-mark":   { "parentId": "worker", "type": "rect", "x": 560, "y": 80, "w": 200, "h": 100, "text": "delete row", "style": { "fill": "#ecfdf5", "stroke": "#059669" } },
+    "k-a1": { "parentId": "worker", "type": "arrow", "from": { "nodeId": "k-poll", "side": "right" }, "to": { "nodeId": "k-charge", "side": "left" } },
+    "k-a2": { "parentId": "worker", "type": "arrow", "from": { "nodeId": "k-charge", "side": "right" }, "to": { "nodeId": "k-mark", "side": "left" } },
+    "k-a3": {
+      "parentId": "worker", "type": "arrow",
+      "from": { "nodeId": "k-charge", "side": "bottom" }, "to": { "nodeId": "k-poll", "side": "bottom" },
+      "text": "retry x3",
+      "style": { "stroke": "#dc2626", "strokeStyle": "dashed" }
+    }
+  }
+}

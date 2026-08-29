@@ -1,0 +1,2 @@
+# Built pages are derived from the .json beside them.
+*.deepdraw.html
