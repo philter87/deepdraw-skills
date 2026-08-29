@@ -1,0 +1,12 @@
+{
+  "name": "deepdraw-skills",
+  "owner": { "name": "philter87", "url": "https://github.com/philter87" },
+  "description": "The DeepDraw drawing skill.",
+  "plugins": [
+    {
+      "name": "deepdraw",
+      "source": "./",
+      "description": "A skill for creating interactive and nested drawings: author a deepdraw document as JSON and build the standalone HTML the app exports and imports."
+    }
+  ]
+}

@@ -1,6 +1,7 @@
 ---
 name: deepdraw
 description: Draw a deepdraw drawing — a zoomable whiteboard where every shape can hold markdown notes and its own nested drawing — and build it into one self-contained HTML file. Use ONLY when the user explicitly asks for a deepdraw / deepdrawing, or asks to update a .deepdraw.json or .deepdraw.html file. Do not use it for ordinary diagrams, mermaid, SVG or slides.
+disable-model-invocation: true
 ---
 
 # deepdraw

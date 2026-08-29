@@ -1,60 +1,104 @@
 # deepdraw-skills
 
-A skill for creating interactive and nested drawings.
+An agent skill for [**DeepDraw**](https://deepdraw.ai): interactive and nested
+drawings, with markdown.
 
-`skills/deepdraw` writes a deepdraw document as JSON and builds it into one
-self-contained HTML page — the drawing plus the library, inlined, no network.
-Every shape on the board can hold markdown notes and a whole drawing of its own,
-so a picture is something you read into rather than only look at.
+Great for software architecture, brainstorms and organizing knowledge visually.
+
+![A drawing the skill generated](docs/architecture.png)
+
+**Every box can hold a whole drawing of its own.** The detail goes *inside* the
+shape rather than spreading across the page, so the top level stays a picture
+you can take in at once:
+
+![Inside one of the boxes](docs/architecture-inside.png)
+
+**And every shape can hold markdown.** The label is the shorthand; clicking the
+shape is how you find out what was actually meant:
+
+![A sticky note and its notes](docs/brainstorm.png)
 
 ## Install
 
-Copy or symlink the skill where your agent looks for skills:
+The skill is the `skills/deepdraw/` directory. Every agent below reads the same
+`SKILL.md`; they only disagree about where to put it.
 
-```bash
-ln -s "$PWD/skills/deepdraw" ~/.claude/skills/deepdraw     # user-wide
-ln -s "$PWD/skills/deepdraw" /path/to/project/.claude/skills/deepdraw
+### Claude Code
+
+One command, from inside Claude Code:
+
+```
+/plugin marketplace add philter87/deepdraw-skills
+/plugin install deepdraw@deepdraw-skills
 ```
 
-It is a deliberate skill: it activates when somebody asks for a deepdraw
-drawing, not for diagrams in general.
+Or copy it in by hand. `~/.claude/skills/` for every project, `.claude/skills/`
+for one:
 
-## Use it by hand
+```bash
+git clone https://github.com/philter87/deepdraw-skills
+mkdir -p ~/.claude/skills && cp -r deepdraw-skills/skills/deepdraw ~/.claude/skills/
+```
+
+### GitHub Copilot
+
+```bash
+git clone https://github.com/philter87/deepdraw-skills
+mkdir -p ~/.copilot/skills && cp -r deepdraw-skills/skills/deepdraw ~/.copilot/skills/
+```
+
+Per repository instead: `.github/skills/deepdraw/`.
+
+### Codex
+
+```bash
+git clone https://github.com/philter87/deepdraw-skills
+mkdir -p ~/.agents/skills && cp -r deepdraw-skills/skills/deepdraw ~/.agents/skills/
+```
+
+Per repository instead: `.agents/skills/deepdraw/`.
+
+`~/.agents/skills/` is read by Copilot as well, so one copy there covers both.
+
+## Use
+
+Trigger it deliberately, with the subject after the command:
+
+```
+/deepdraw the checkout service and how it talks to payments
+```
+
+`/deepdraw` in Claude Code, `$deepdraw` in Codex, `/deepdraw` in Copilot.
+
+The skill sets `disable-model-invocation: true`, so in Claude Code it never
+fires on its own: asking for "a diagram" gets you a diagram some other way until
+you type the command. Copilot and Codex ignore that field and may still pick the
+skill up from its description.
+
+Nothing to install beyond Python 3. The one script has no dependencies.
+
+## What you get back
+
+Two files beside each other:
+
+- `drawing.deepdraw.html`, the page. It needs no network and no server, and the
+  whole drawing travels inside it.
+- `drawing.deepdraw.json`, the same drawing as JSON. It carries **only what the
+  drawing set**, since DeepDraw fills its own defaults in wherever a document is
+  read, so it is about half the size of a full export and small enough to read
+  and edit by hand.
+
+Either one imports into deepdraw.ai through **☰ → Import…**, which is where you
+go to edit a drawing after the fact.
+
+The two drawings in the screenshots are in
+[`skills/deepdraw/examples/`](skills/deepdraw/examples); build one to see it:
 
 ```bash
 python3 skills/deepdraw/build.py skills/deepdraw/examples/brainstorm.deepdraw.json
-open skills/deepdraw/examples/brainstorm.deepdraw.html
 ```
 
-Python 3 is the only requirement, on any platform. `build.py` rejects invalid
-JSON and dangling references before writing a page around them, and signs the
-result bottom right — "Created with deepdraw.ai · deepdraw-skills" — so a reader
-who wants another drawing like it can find what made it. `--no-credit` leaves
-the page signed by the library alone.
+## Licence
 
-## Layout
-
-```
-skills/deepdraw/
-  SKILL.md                    what the agent reads
-  build.py                    JSON -> standalone HTML
-  reference/
-    spec.md                   the document format
-    cookbook.md               grids, freehand paths, board recipes
-    template.html             the page, with the library inlined
-    .deepdraw-version         which library build that is
-  examples/
-    architecture.deepdraw.json
-    brainstorm.deepdraw.json
-```
-
-## Updating the library
-
-`reference/template.html` is a vendored copy of `deepdraw/lib/dist/template.html`
-and `.deepdraw-version` records which build it came from. To move to a newer
-library, rebuild the lib and copy both again:
-
-```bash
-cp ../deepdraw/lib/dist/template.html skills/deepdraw/reference/template.html
-jq -r .version ../deepdraw/lib/package.json > skills/deepdraw/reference/.deepdraw-version
-```
+MIT. DeepDraw itself is a separate project; the library bundled inside
+`skills/deepdraw/reference/template.html` belongs to it.
