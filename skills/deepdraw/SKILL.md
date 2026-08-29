@@ -83,37 +83,6 @@ a nested drawing inside its shape before opening it.
 7. **Arrow labels sit at the midpoint**, so leave ~90px between the shapes an
    arrow labels, or the text lands on them.
 
-## Palette
-
-Fill with stroke, one pair per meaning. Never more than five in a drawing.
-
-| | fill | stroke |
-|---|---|---|
-| slate (neutral) | `#f8fafc` | `#475569` |
-| white | `#ffffff` | `#334155` |
-| blue | `#eff6ff` | `#2563eb` |
-| green | `#ecfdf5` | `#059669` |
-| amber | `#fef3c7` | `#d97706` |
-| violet | `#f5f3ff` | `#7c3aed` |
-| red | `#fef2f2` | `#dc2626` |
-
-Sticky pads are stronger: `#fef08a`/`#eab308` (default), `#dbeafe`, `#d1fae5`,
-`#ede9fe`, `#fee2e2`, `#f1f5f9`. Grey caption text is `#64748b`.
-
-## Make it worth opening
-
-- **Say what colour means**, once, in a caption or the root notes — then hold to it.
-- **Put the argument in the notes.** The label is the shorthand somebody said out
-  loud; the markdown is what they meant, what it cost, what was decided.
-  `@[Shape label]` in markdown links to another shape.
-- **Two or three levels, not six.** A nested drawing should be worth the trip:
-  five to eight shapes with their own arrows, not one box.
-- **Draw on it.** A red freehand ring around the winner, a squiggle under the
-  doomed one, a rotation of ±2° on every sticky. A board that looks handled
-  reads as a record of a conversation rather than a generated chart.
-- **Root notes are the front page** — shown when nothing is selected. Say what
-  the board is and how to read it.
-
 ## Then
 
 Build it, and check the output opened and looks right — either in a browser, or
