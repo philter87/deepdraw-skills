@@ -5,13 +5,12 @@ drawings, with markdown.
 
 Great for software architecture, brainstorms and organizing knowledge visually.
 
-![A drawing the skill generated](docs/architecture.png)
+![Panning across a drawing the skill made, then clicking into two of its boxes](docs/demo.gif)
 
 **Every box can hold a whole drawing of its own.** The detail goes *inside* the
 shape rather than spreading across the page, so the top level stays a picture
-you can take in at once:
-
-![Inside one of the boxes](docs/architecture-inside.png)
+you can take in at once — clicking a box previews what is in it, and clicking
+again opens it.
 
 **And every shape can hold markdown.** The label is the shorthand; clicking the
 shape is how you find out what was actually meant:
