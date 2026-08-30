@@ -66,23 +66,13 @@ a nested drawing inside its shape before opening it.
 | `image` | `data:` URI in `href` | 160×120 |
 | `group`, `link` | see `reference/spec.md` | — |
 
-## The seven things that catch you out
 
-1. **Labels do not wrap.** Break lines yourself with `\n`, ~18 characters a line.
-2. **A nested drawing is its own canvas.** Children of a shape use their own
-   coordinates from 0,0 — not the parent's box, not its size. Give each one
-   300×300 at least.
-3. **A container groups; it does not nest.** Its members are *siblings* declared
-   *after* it, drawn on top of it. Use nesting for detail worth a click, a
-   container for "these three belong together".
-4. **Declaration order is z-order.** Containers and background shapes first.
-5. **Arrow ends:** `{"nodeId":"x","side":"right"}` pins an edge midpoint;
-   `{"nodeId":"x"}` alone lets the end slide to face the other end — better for
-   diagonals; `{"x":..,"y":..}` is a free point.
-6. **Markdown is what puts a shape in the hierarchy tree** (so does a nested
-   drawing). A box with notes is navigable; one without is only on the canvas.
-7. **Arrow labels sit at the midpoint**, so leave ~90px between the shapes an
-   arrow labels, or the text lands on them.
+## Hints
+ - use colors as a way to group related shapes
+ - remember to use images found online when investigating a subject to illustrate
+ - you can also group shapes within a single layer using a dashed rect
+ - Consider a Composition where arrows dont "penetrates" other shapes
+ - use the svg icon search functionality https://icon-sets.iconify.design/?query=QUERY
 
 ## Then
 
