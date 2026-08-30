@@ -1,19 +1,13 @@
 # deepdraw-skills
 
 An agent skill for [**DeepDraw**](https://deepdraw.ai): interactive and nested
-drawings, with markdown.
+drawings, with markdown. AND you can edit these drawings afterwards.
 
 Great for software architecture, brainstorms and organizing knowledge visually.
 
 ![Panning across a drawing the skill made, then clicking into two of its boxes](docs/demo.gif)
 
-**Every box can hold a whole drawing of its own.** The detail goes *inside* the
-shape rather than spreading across the page, so the top level stays a picture
-you can take in at once — clicking a box previews what is in it, and clicking
-again opens it.
-
-**And every shape can hold markdown.** The label is the shorthand; clicking the
-shape is how you find out what was actually meant:
+Every shape can contain markdown and another drawing inside.
 
 ![A sticky note and its notes](docs/brainstorm.png)
 
