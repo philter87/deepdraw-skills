@@ -71,7 +71,7 @@ a nested drawing inside its shape before opening it.
  - use colors as a way to group related shapes
  - remember to use images found online when investigating a subject to illustrate
  - you can also group shapes within a single layer using a dashed rect
- - Consider a Composition where arrows dont "penetrates" other shapes
+ - plan a composition/layout where arrows dont cross over other shapes 
  - use the svg icon search functionality https://icon-sets.iconify.design/?query=QUERY
 
 ## Then
