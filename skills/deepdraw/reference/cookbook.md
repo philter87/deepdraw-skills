@@ -67,6 +67,27 @@ the box to frame what you are marking, then paste the path.
 Freehand is `stroke` + `strokeWidth` only; 3px red (`#dc2626`) is the marker
 everybody reads as "this one".
 
+## Pictures
+
+**A row of icons with labels.** The caption is the node's own `text`; it sits
+below the glyph, so leave room for it rather than a `text` node under each:
+
+```
+icon i    x 40 + i*140, y 60, w 64, h 64      label below, ~20px of it
+```
+
+**A screenshot with its caption.** Give the width only and the build works out
+the height from the picture, so nothing is squashed:
+
+```
+image     x 40, y 60, w 420           h comes from the file
+caption   the image's own `text`      centred under it
+```
+
+**A picture with a note beside it.** Screenshot left, `text` shape right at the
+same `y`, 40px gutter. The long version goes in the image's `markdown`, which
+opens in the pane — a caption is a line, not a paragraph.
+
 ## Boards worth making
 
 **System map.** Top level: one box per service, dashed containers for the trust
@@ -106,6 +127,7 @@ already next to each other wastes a rectangle.
 ## Before you build
 
 - Every `nodeId` in an arrow points at a shape **in the same drawing**.
+- Pictures carry their caption in `text`, and images give `w` or `h`, not both.
 - Labels have `\n` where they need to break; nothing runs past its box.
 - Nothing overlaps that did not mean to — arrow labels especially.
 - Each nested drawing lays out from 0,0 and is at least 300×300.

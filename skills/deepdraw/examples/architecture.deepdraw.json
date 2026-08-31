@@ -2,7 +2,6 @@
   "version": 1,
   "title": "Order service",
   "rootId": "root",
-  "allowEdit": true,
   "nodes": {
     "root": {
       "type": "root",

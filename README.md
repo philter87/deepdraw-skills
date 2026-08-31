@@ -70,14 +70,18 @@ fires on its own: asking for "a diagram" gets you a diagram some other way until
 you type the command. Copilot and Codex ignore that field and may still pick the
 skill up from its description.
 
-Nothing to install beyond Python 3. The one script has no dependencies.
+Nothing to install beyond Python 3. Pictures are scaled and re-encoded with
+[Pillow](https://pypi.org/project/Pillow/) when it is importable — without it
+they still go in, at whatever size they came in at.
 
 ## What you get back
 
 Two files beside each other:
 
 - `drawing.deepdraw.html`, the page. It needs no network and no server, and the
-  whole drawing travels inside it. You can edit this.
+  whole drawing — pictures and icons included — travels inside it. **You can
+  edit it**: it opens in edit mode, with a Save button that writes back to the
+  file.
 - `drawing.deepdraw.json`, the same drawing as JSON. It carries **only what the
   drawing set**, since DeepDraw fills its own defaults in wherever a document is
   read, so it is about half the size of a full export and small enough to read
