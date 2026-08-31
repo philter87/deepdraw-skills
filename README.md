@@ -1,13 +1,15 @@
 # deepdraw-skills
 
 An agent skill for [**DeepDraw**](https://deepdraw.ai): interactive and nested
-drawings, with markdown. AND you can edit these drawings afterwards.
+drawings, with markdown. 
+
+**AND you can edit these drawings manually afterwards.**
 
 Great for software architecture, brainstorms and organizing knowledge visually.
 
 ![Panning across a drawing the skill made, then clicking into two of its boxes](docs/demo.gif)
 
-Every shape can contain markdown and another drawing inside.
+Every shape can contain markdown and potentially drawing inside.
 
 ![A sticky note and its notes](docs/brainstorm.png)
 
@@ -75,14 +77,13 @@ Nothing to install beyond Python 3. The one script has no dependencies.
 Two files beside each other:
 
 - `drawing.deepdraw.html`, the page. It needs no network and no server, and the
-  whole drawing travels inside it.
+  whole drawing travels inside it. You can edit this.
 - `drawing.deepdraw.json`, the same drawing as JSON. It carries **only what the
   drawing set**, since DeepDraw fills its own defaults in wherever a document is
   read, so it is about half the size of a full export and small enough to read
   and edit by hand.
 
-Either one imports into deepdraw.ai through **☰ → Import…**, which is where you
-go to edit a drawing after the fact.
+You can also edit, share and collaborate with others by importing it into deepdraw.ai through **☰ → Import…**.
 
 The two drawings in the screenshots are in
 [`skills/deepdraw/examples/`](skills/deepdraw/examples); build one to see it:
