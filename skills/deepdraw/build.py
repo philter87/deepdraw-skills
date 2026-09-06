@@ -24,7 +24,7 @@ Three things happen to the document on the way in:
 - **It opens editable**, unless `--read-only`. A drawing somebody cannot move a
   box in is a picture, and if that is what was wanted it is worth saying.
 
-The page signs itself bottom right — "Created with deepdraw.ai", and beside it
+The page signs itself bottom right — "Created with deepdraw.app", and beside it
 this skill, because a reader who wants another drawing like this one wants the
 tool that made it rather than this copy of it.
 """

@@ -1,6 +1,6 @@
 # deepdraw-skills
 
-An agent skill for [**DeepDraw**](https://deepdraw.ai): interactive and nested
+An agent skill for [**DeepDraw**](https://deepdraw.app): interactive and nested
 drawings, with markdown. 
 
 **AND you can edit these drawings manually afterwards.**
@@ -87,7 +87,7 @@ Two files beside each other:
   read, so it is about half the size of a full export and small enough to read
   and edit by hand.
 
-You can also edit, share and collaborate with others by importing it into deepdraw.ai through **☰ → Import…**.
+You can also edit, share and collaborate with others by importing it into deepdraw.app through **☰ → Import…**.
 
 The two drawings in the screenshots are in
 [`skills/deepdraw/examples/`](skills/deepdraw/examples); build one to see it:
