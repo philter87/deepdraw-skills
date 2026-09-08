@@ -108,6 +108,7 @@ python3 media.py photo.jpg                # what it will weigh, as a file
  - `python3 icons.py search QUERY` finds icons; keep one Iconify set across a
    drawing so the glyphs look drawn by one hand
  - an image's own `text` is its caption — it renders centred under the picture
+ - NEVER use em-dash. That is – or —
 
 ## Then
 
